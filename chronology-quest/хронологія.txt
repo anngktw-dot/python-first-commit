@@ -1,0 +1,120 @@
+ХРОНОЛОГІЯ: 13.10.2026 23:00:00 — 14.10.2026 04:00:00 (межі включено)
+Розібрано записів: 107; у періоді: 62; дублікатів: 0.
+Невідомі типи наведені для повноти, але не використані як докази.
+ПОВНА ХРОНОЛОГІЯ
+13.10.2026 23:00:00 | SYSTEM | status=ok | hub_log.txt:51
+13.10.2026 23:05:00 | SENSOR | zone=A | type=temp | value=4,3 | hub_log.txt:52
+13.10.2026 23:05:20 | SENSOR | zone=B | type=temp | value=4,6 | hub_log.txt:53
+13.10.2026 23:05:40 | SENSOR | zone=C | type=temp | value=4,1 | hub_log.txt:55
+13.10.2026 23:05:44 | SYSTEM | status=night_mode | hub_log.txt:56
+13.10.2026 23:15:00 | SYSTEM | status=ok | hub_log.txt:57
+13.10.2026 23:30:00 | SYSTEM | status=ok | hub_log.txt:58
+13.10.2026 23:30:00 | ACCESS | zone=A | card=GUARD-07 | result=granted | hub_log.txt:59
+13.10.2026 23:35:00 | SENSOR | zone=A | type=temp | value=3,9 | hub_log.txt:60
+13.10.2026 23:35:20 | SENSOR | zone=B | type=temp | value=4,7 | hub_log.txt:61
+13.10.2026 23:35:40 | SENSOR | zone=C | type=temp | value=3,9 | hub_log.txt:62
+13.10.2026 23:36:00 | ACCESS | zone=B | card=GUARD-07 | result=granted | hub_log.txt:63
+13.10.2026 23:45:00 | SYSTEM | status=ok | hub_log.txt:64
+14.10.2026 00:00:00 | SYSTEM | status=ok | hub_log.txt:66
+14.10.2026 00:05:00 | SENSOR | zone=A | type=temp | value=4,0 | hub_log.txt:68
+14.10.2026 00:05:20 | SENSOR | zone=B | type=temp | value=4,3 | hub_log.txt:69
+14.10.2026 00:05:40 | SENSOR | zone=C | type=temp | value=4,0 | hub_log.txt:70
+14.10.2026 00:15:00 | SYSTEM | status=ok | hub_log.txt:71
+14.10.2026 00:30:00 | SYSTEM | status=ok | hub_log.txt:73
+14.10.2026 00:35:00 | SENSOR | zone=A | type=temp | value=3,9 | hub_log.txt:74
+14.10.2026 00:35:12 | ALARM | zone=all | action=disable | card=BLUE-0417 | hub_log.txt:75
+14.10.2026 00:35:20 | SENSOR | zone=B | type=temp | value=4,1 | hub_log.txt:76
+14.10.2026 00:35:40 | SENSOR | zone=C | type=temp | value=4,1 | hub_log.txt:78
+14.10.2026 00:41:30 | ACCESS | zone=C | card=BLUE-0417 | result=granted | hub_log.txt:79
+14.10.2026 00:45:00 | SYSTEM | status=ok | hub_log.txt:80
+14.10.2026 00:52:47 | GATE | gate=3 | action=open | truck=BC7781TT | hub_log.txt:81
+14.10.2026 00:53:10 | CARGO | batch=7-Б | action=out | gate=3 | hub_log.txt:82
+14.10.2026 00:58:02 | GATE | gate=3 | action=close | hub_log.txt:84
+14.10.2026 01:00:00 | SYSTEM | status=ok | hub_log.txt:85
+14.10.2026 01:05:00 | SENSOR | zone=A | type=temp | value=4,1 | hub_log.txt:86
+14.10.2026 01:05:20 | SENSOR | zone=B | type=temp | value=4,6 | hub_log.txt:87
+14.10.2026 01:05:40 | SENSOR | zone=C | type=temp | value=4,2 | hub_log.txt:88
+14.10.2026 01:10:00 | GHOST | zone=C | action=walk | hub_log.txt:99 [НЕВІДОМИЙ ТИП — потребує перевірки]
+14.10.2026 01:15:00 | SYSTEM | status=ok | hub_log.txt:89
+14.10.2026 01:30:00 | SYSTEM | status=ok | hub_log.txt:90
+14.10.2026 01:30:00 | ACCESS | zone=A | card=GUARD-07 | result=granted | hub_log.txt:91
+14.10.2026 01:35:00 | SENSOR | zone=A | type=temp | value=4,3 | hub_log.txt:92
+14.10.2026 01:35:20 | SENSOR | zone=B | type=temp | value=4,1 | hub_log.txt:93
+14.10.2026 01:35:40 | SENSOR | zone=C | type=temp | value=4,1 | hub_log.txt:94
+14.10.2026 01:36:00 | ACCESS | zone=B | card=GUARD-07 | result=granted | hub_log.txt:95
+14.10.2026 01:45:00 | SYSTEM | status=ok | hub_log.txt:96
+14.10.2026 02:00:00 | SYSTEM | status=ok | hub_log.txt:97
+14.10.2026 02:05:00 | SENSOR | zone=A | type=temp | value=4,3 | hub_log.txt:98
+14.10.2026 02:05:20 | SENSOR | zone=B | type=temp | value=4,1 | hub_log.txt:100
+14.10.2026 02:05:40 | SENSOR | zone=C | type=temp | value=4,0 | hub_log.txt:102
+14.10.2026 02:15:00 | SYSTEM | status=ok | hub_log.txt:103
+14.10.2026 02:30:00 | SYSTEM | status=ok | hub_log.txt:105
+14.10.2026 02:35:00 | SENSOR | zone=A | type=temp | value=4,0 | hub_log.txt:106
+14.10.2026 02:35:20 | SENSOR | zone=B | type=temp | value=4,4 | hub_log.txt:107
+14.10.2026 02:35:40 | SENSOR | zone=C | type=temp | value=4,1 | hub_log.txt:108
+14.10.2026 02:45:00 | SYSTEM | status=ok | hub_log.txt:110
+14.10.2026 02:47:55 | SENSOR | zone=C | type=smoke | value=0,92 | hub_log.txt:111
+14.10.2026 02:48:10 | ALARM | zone=C | action=trigger | state=suppressed | hub_log.txt:112
+14.10.2026 02:50:00 | SENSOR | zone=C | type=temp | value=38,5 | hub_log.txt:113
+14.10.2026 03:00:00 | SYSTEM | status=ok | hub_log.txt:114
+14.10.2026 03:05:00 | SENSOR | zone=C | type=temp | value=71,0 | hub_log.txt:115
+14.10.2026 03:12:30 | SENSOR | zone=B | type=smoke | value=0,61 | hub_log.txt:116
+14.10.2026 03:12:45 | ALARM | zone=B | action=trigger | state=suppressed | hub_log.txt:117
+14.10.2026 03:15:00 | SYSTEM | status=ok | hub_log.txt:121
+14.10.2026 03:20:40 | CALL | source=external | note=пожежна | hub_log.txt:122
+14.10.2026 03:30:00 | SYSTEM | status=ok | hub_log.txt:123
+14.10.2026 03:41:00 | SYSTEM | status=offline | hub_log.txt:124
+
+ВАЖЛИВІ ПОДІЇ
+13.10.2026 23:05:44 | SYSTEM | status=night_mode | hub_log.txt:56
+13.10.2026 23:30:00 | ACCESS | zone=A | card=GUARD-07 | result=granted | hub_log.txt:59
+13.10.2026 23:36:00 | ACCESS | zone=B | card=GUARD-07 | result=granted | hub_log.txt:63
+14.10.2026 00:35:12 | ALARM | zone=all | action=disable | card=BLUE-0417 | hub_log.txt:75
+14.10.2026 00:41:30 | ACCESS | zone=C | card=BLUE-0417 | result=granted | hub_log.txt:79
+14.10.2026 00:52:47 | GATE | gate=3 | action=open | truck=BC7781TT | hub_log.txt:81
+14.10.2026 00:53:10 | CARGO | batch=7-Б | action=out | gate=3 | hub_log.txt:82
+14.10.2026 00:58:02 | GATE | gate=3 | action=close | hub_log.txt:84
+14.10.2026 01:30:00 | ACCESS | zone=A | card=GUARD-07 | result=granted | hub_log.txt:91
+14.10.2026 01:36:00 | ACCESS | zone=B | card=GUARD-07 | result=granted | hub_log.txt:95
+14.10.2026 02:47:55 | SENSOR | zone=C | type=smoke | value=0,92 | hub_log.txt:111
+14.10.2026 02:48:10 | ALARM | zone=C | action=trigger | state=suppressed | hub_log.txt:112
+14.10.2026 02:50:00 | SENSOR | zone=C | type=temp | value=38,5 | hub_log.txt:113
+14.10.2026 03:05:00 | SENSOR | zone=C | type=temp | value=71,0 | hub_log.txt:115
+14.10.2026 03:12:30 | SENSOR | zone=B | type=smoke | value=0,61 | hub_log.txt:116
+14.10.2026 03:12:45 | ALARM | zone=B | action=trigger | state=suppressed | hub_log.txt:117
+14.10.2026 03:20:40 | CALL | source=external | note=пожежна | hub_log.txt:122
+14.10.2026 03:41:00 | SYSTEM | status=offline | hub_log.txt:124
+
+ЧАСОВІ ІНТЕРВАЛИ
+Вимкнення сигналізації → перший запис диму: 2 год 12 хв 43 с.
+Вимкнення сигналізації → вивезення партії: 0 год 17 хв 58 с.
+Переміщення 7-P → перший запис диму: неможливо однозначно обчислити: подія відсутня або має кілька кандидатів.
+Перший запис диму → offline: 0 год 53 хв 5 с.
+Відкриття → закриття воріт №3: 0 год 5 хв 15 с.
+Дим у C → дим у B: 0 год 24 хв 35 с.
+Вивезення 7-Б (розбіжність) → перший запис диму: 1 год 54 хв 45 с.
+
+ЗВІРКА З ОПИСОМ (усі вивезення, включно з подіями до 23:00)
+13.10.2026 20:45:10 | CARGO | batch=2-В | action=out | gate=2 | hub_log.txt:15
+inventory_recovered.txt:8: Аскорбінова кислота; категорія=vitamin; кількість=600; вага=30,0; сектор=B; статус=відвантажено
+Статус узгоджується з вивезенням.
+13.10.2026 21:30:15 | CARGO | batch=5-Г | action=out | gate=1 | hub_log.txt:26
+inventory_recovered.txt:9: Азитроміцин; категорія=antibiotic; кількість=180; вага=21,6; сектор=B; статус=відвантажено
+Статус узгоджується з вивезенням.
+13.10.2026 22:11:02 | CARGO | batch=4-А | action=out | gate=1 | hub_log.txt:40
+inventory_recovered.txt:10: Вакцина від гепатиту B; категорія=vaccine; кількість=120; вага=15,0; сектор=B; статус=відвантажено
+Статус узгоджується з вивезенням.
+14.10.2026 00:53:10 | CARGO | batch=7-Б | action=out | gate=3 | hub_log.txt:82
+inventory_recovered.txt:16: Ксенотрин, ампули; категорія=experimental; кількість=120; вага=14,4; сектор=C; статус=згоріло
+РОЗБІЖНІСТЬ: вивезення в журналі, але інший статус в описі.
+У журналі немає кількості, ваги, назви й категорії вантажу: звірити їх неможливо.
+Час складання опису, обсяг вивезення і повнота журналу невідомі; розбіжність записів не доводить, що вся партія була вивезена або що був підпал.
+
+МЕЖІ ВИСНОВКІВ
+7-P не підміняється номером 7-Б: це різні ідентифікатори.
+BLUE-0417 зафіксована при вимкненні сигналізації й доступі до C; власник картки невідомий.
+Для воріт №3 записаний автомобіль BC7781TT, але зв’язок водія з карткою не доведений.
+Дим і зростання температури узгоджуються з пожежею; точний момент займання невідомий.
+suppressed підтверджує стан тривоги, але не встановлює причину приглушення.
+offline означає стан системи; фізичне вимкнення сервера та його причина не доведені.
+Після останнього запису немає даних до 04:00; це не доказ відсутності подій.
