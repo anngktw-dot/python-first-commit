@@ -28,7 +28,9 @@ def read_text(path):
 
 def parse_log(text):
     """Розбирає рядки; дублікати й проблеми зберігає для перевірки."""
-    events, problems, seen = [], [], {}
+    events = []          # Події з журналу
+    problems = []        # Рядки, у яких є помилки
+    seen = {}            # Уже знайдені записи для перевірки дублікатів
     duplicates = 0
     for number, raw in enumerate(text.splitlines(), 1):
         try:
@@ -69,7 +71,9 @@ def parse_log(text):
 
 def parse_inventory(text):
     """Перевіряє всі сім полів, не доповнюючи відсутні дані."""
-    rows, problems, seen = [], [], set()
+    rows = []           # Усі рядки опису складу
+    problems = []       # Помилки в описі
+    seen = set()        # Номери партій, які вже зустрічалися
     lines = text.splitlines()
     headers = ['batch', 'name', 'category', 'qty', 'weight_kg', 'sector', 'status']
     if not lines or lines[0].split('|') != headers:
@@ -93,7 +97,10 @@ def parse_inventory(text):
         for key in ['qty', 'weight_kg']:
             try:
                 value = row.get(key, '').replace(',', '.')
-                value = int(value) if key == 'qty' else float(value)
+                if key == 'qty':
+                    value = int(value)       # Кількість — ціле число
+                else:
+                    value = float(value)     # Вага може бути дробовою
                 if value < 0 or not math.isfinite(value):
                     raise ValueError()
             except ValueError:
@@ -112,9 +119,20 @@ def parse_inventory(text):
 
 def select_events(events, kind, **fields):
     """Знаходить події за типом і потрібними полями без дублікатів."""
-    return [event for event in events if event['kind'] == kind
-            and not event['duplicate']
-            and all(event['fields'].get(key) == value for key, value in fields.items())]
+    result = []
+    for event in events:
+        if event['kind'] != kind or event['duplicate']:
+            continue  # Пропускаємо інші типи та повтори
+
+        matches = True
+        for key, value in fields.items():
+            if event['fields'].get(key) != value:
+                matches = False
+                break
+
+        if matches:
+            result.append(event)
+    return result
 
 
 def describe(event):
@@ -169,12 +187,22 @@ def compare_inventory(events, rows):
 
 def write_reports(events, rows, problems, duplicates):
     """Створює хронологію, звірку, інтервали й короткий висновок."""
+    # Залишаємо записи лише за ніч, яка нас цікавить.
     period = [event for event in events if START <= event['time'] <= END]
-    important = [event for event in period if event['kind'] in ['ACCESS', 'ALARM', 'GATE', 'CARGO', 'CALL']
-                 or event['fields'].get('status') in ['night_mode', 'offline']
-                 or (event['kind'] == 'SENSOR' and
-                     (event['fields']['type'] == 'smoke' or
-                      float(event['fields']['value'].replace(',', '.')) >= 38.5))]
+
+    # Із повної хронології окремо виділяємо важливі події.
+    important = []
+    for event in period:
+        kind = event['kind']
+        fields = event['fields']
+        if kind in ['ACCESS', 'ALARM', 'GATE', 'CARGO', 'CALL']:
+            important.append(event)
+        elif fields.get('status') in ['night_mode', 'offline']:
+            important.append(event)
+        elif kind == 'SENSOR':
+            value = float(fields['value'].replace(',', '.'))
+            if fields['type'] == 'smoke' or value >= 38.5:
+                important.append(event)
     alarm = select_events(period, 'ALARM', action='disable', zone='all')
     smoke = select_events(period, 'SENSOR', type='smoke')[:1]
     cargo = select_events(period, 'CARGO', action='out')
@@ -192,12 +220,20 @@ def write_reports(events, rows, problems, duplicates):
     for event, row in conflicts:
         if START <= event['time'] <= END:
             pairs.append((f"Вивезення {row['batch']} (розбіжність) → перший запис диму", [event], smoke))
-    report = ['ХРОНОЛОГІЯ: 13.10.2026 23:00:00 — 14.10.2026 04:00:00 (межі включено)',
-              f'Розібрано записів: {len(events)}; у періоді: {len(period)}; дублікатів: {duplicates}.',
-              'Невідомі типи наведені для повноти, але не використані як докази.',
-              'ПОВНА ХРОНОЛОГІЯ', *map(describe, period), '', 'ВАЖЛИВІ ПОДІЇ',
-              *map(describe, important), '', 'ЧАСОВІ ІНТЕРВАЛИ']
-    report += [f'{label}: {interval(first, second)}.' for label, first, second in pairs]
+    report = [
+        'ХРОНОЛОГІЯ: 13.10.2026 23:00:00 — 14.10.2026 04:00:00 (межі включено)',
+        f'Розібрано записів: {len(events)}; у періоді: {len(period)}; дублікатів: {duplicates}.',
+        'Невідомі типи наведені для повноти, але не використані як докази.',
+        'ПОВНА ХРОНОЛОГІЯ',
+    ]
+    for event in period:
+        report.append(describe(event))
+    report.extend(['', 'ВАЖЛИВІ ПОДІЇ'])
+    for event in important:
+        report.append(describe(event))
+    report.extend(['', 'ЧАСОВІ ІНТЕРВАЛИ'])
+    for label, first, second in pairs:
+        report.append(f'{label}: {interval(first, second)}.')
     report += ['', 'ЗВІРКА З ОПИСОМ (усі вивезення, включно з подіями до 23:00)', *comparison,
                '', 'МЕЖІ ВИСНОВКІВ',
                '7-P не підміняється номером 7-Б: це різні ідентифікатори.',
@@ -231,10 +267,18 @@ def write_reports(events, rows, problems, duplicates):
         sentences.append(f"Перший дим зафіксовано о {smoke[0]['time']:%H:%M:%S} "
                          f"(рядок {smoke[0]['line']}), а через {interval(smoke, offline)} "
                          f"система перейшла в offline (рядок {offline[0]['line']}).")
-    sentences.append('Ці записи потребують перевірки, але не доводять підпал або чиюсь провину; '
-                     + ('партія 7-P у журналі й описі відсутня.' if not requested and
-                        not any(row.get('batch') == '7-P' for row in rows)
-                        else 'дані про партію 7-P слід розглядати окремо.'))
+    # Не підміняємо партію 7-P схожим номером 7-Б.
+    has_requested_batch = bool(requested)
+    for row in rows:
+        if row.get('batch') == '7-P':
+            has_requested_batch = True
+
+    final_note = 'Ці записи потребують перевірки, але не доводять підпал або чиюсь провину; '
+    if has_requested_batch:
+        final_note += 'дані про партію 7-P слід розглядати окремо.'
+    else:
+        final_note += 'партія 7-P у журналі й описі відсутня.'
+    sentences.append(final_note)
     (BASE / 'висновок.txt').write_text(' '.join(sentences) + '\n', encoding='utf-8')
     print(f'Готово: {len(period)} записів у періоді, {duplicates} дублікатів, '
           f'{len(problems)} рядків для перевірки, {len(conflicts)} розбіжностей.')
